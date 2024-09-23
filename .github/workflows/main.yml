@@ -21,20 +21,28 @@ jobs:
       - uses: jfrog/setup-jfrog-cli@v4
         name: Setup JFrog CLI
         id: setup-cli
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
       - name: configure jfrog environment
         run: |
           jf pip-config --repo-resolve=auth-python-virtual
-
       - name: configure environment
         run: |                      
-          python3 -m pip install --upgrade pip setuptools wheel sigstore
+          python3 -m pip install --upgrade pip setuptools wheel sigstore build
           wheel -h
-          pip show setuptools
+          --user
           echo $VIRTUAL_ENV
 
       - name: build project
-        run: |                      
-          python setup.py sdist bdist_wheel
+        run: >-                      
+          python -m 
+          build 
+          --sdist 
+          --wheel 
+          --outdir dist/
+          .
 
       - name: publish python package
         run: |
