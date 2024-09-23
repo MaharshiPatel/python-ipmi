@@ -34,13 +34,11 @@ jobs:
 
       - name: build project
         run: |                      
-          # jf pip install -r requirements.txt  --module=python-ipmi
           python setup.py sdist bdist_wheel
-          cd dist && echo "hashes=$(sha256sum * | base64 -w0)" >> $GITHUB_OUTPUT
 
       - name: publish python package
         run: |
-          jf rt u dist/ python-virtual/example-projects/ --module=python-ipmi
+          jf rt u / auth-python-virtual/example-projects/ --module=python-ipmi
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3    
