@@ -35,7 +35,7 @@ jobs:
 
       - name: build project
         run: >-                      
-          python -m 
+          python3 -m 
           build 
           --sdist 
           --wheel 
