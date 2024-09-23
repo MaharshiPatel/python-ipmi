@@ -26,6 +26,14 @@ jobs:
       - name: configure jfrog environment
         run: |
           jf pip-config --repo-resolve=auth-python-virtual
+      
+      - name: Install dependencies
+        run: jf pip install python-coveralls coverage pytest pytest-cov flake8
+
+      - name: Test with pytest
+        run: |
+          pytest --cov=pyipmi --cov-report=lcov
+      
       - name: configure environment
         run: >-                      
           python3 -m 
