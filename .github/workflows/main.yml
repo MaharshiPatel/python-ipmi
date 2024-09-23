@@ -27,11 +27,12 @@ jobs:
         run: |
           jf pip-config --repo-resolve=auth-python-virtual
       - name: configure environment
-        run: |                      
-          python3 -m pip install --upgrade pip setuptools wheel sigstore build
-          wheel -h
+        run: >-                      
+          python3 -m 
+          pip install 
+          --upgrade pip setuptools wheel sigstore 
+          build
           --user
-          echo $VIRTUAL_ENV
 
       - name: build project
         run: >-                      
