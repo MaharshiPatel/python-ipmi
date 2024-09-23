@@ -61,7 +61,22 @@ jobs:
           platforms: linux/amd64 #, linux/arm64
           tags: ${{ env.HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
 
-      # - name: docker scan
-      #   run: |  
-      #     jf docker pull ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
-      #     jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+      - name: docker scan
+        run: |  
+          jf docker pull ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
+          jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}                               
+
+      - name: add docker package to build
+        run: |  
+          echo "${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.digest }}" > metadata.json
+          jf rt build-docker-create ${{ env.DOCKER_REPO }} --image-file metadata.json 
+                 
+      - name: publish build info
+        run: |
+          jf rt bce 
+          jf rt bag
+          jf rt bp
+                
+      - name: build scan
+        run: |            
+          jf build-scan --fail=false
