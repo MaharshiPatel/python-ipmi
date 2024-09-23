@@ -34,7 +34,7 @@ jobs:
 
       - name: build project
         run: |                      
-          jf pip install -r requirements.txt  --module=python-ipmi
+          # jf pip install -r requirements.txt  --module=python-ipmi
           python setup.py sdist bdist_wheel
           cd dist && echo "hashes=$(sha256sum * | base64 -w0)" >> $GITHUB_OUTPUT
 
