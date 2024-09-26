@@ -38,8 +38,8 @@ except (OSError, subprocess.CalledProcessError, IOError):
 with open('README.rst') as f:
     readme = f.read()
 
-setup(name=python-ipmi,
-      version=1.0.1,
+setup(name='python-ipmi',
+      version='1.0.1',
       description='Pure python IPMI library',
       long_description=readme,
       url='https://github.com/kontron/python-ipmi',
