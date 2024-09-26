@@ -51,7 +51,6 @@ jobs:
 
       - name: publish python package
         run: |
-          ls ./
           ls ./dist
           jf rt u / auth-python-virtual/example-projects/ --module=python-ipmi
 
