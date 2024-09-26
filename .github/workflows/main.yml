@@ -52,7 +52,7 @@ jobs:
       - name: publish python package
         run: |
           ls ./dist
-          jf rt u / auth-python-virtual/example-projects/ --module=python-ipmi
+          jf rt u ./dist/* auth-python-virtual/ --module=python-ipmi
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3    
