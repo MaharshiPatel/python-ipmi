@@ -1,4 +1,3 @@
-FROM alpine:3.18.6
 FROM python:3.6
 
 COPY ./* python-ipmi/
