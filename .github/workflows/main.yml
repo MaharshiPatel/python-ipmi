@@ -62,18 +62,10 @@ jobs:
           registry: ${{ vars.JF_URL }}
           username: ${{ vars.JF_USER }}
           password: ${{ secrets.JF_PASSWORD }}
-    
-                
-      - name: Build Docker image    
-        uses: docker/build-push-action@v5
-        id: build
-        with:
-          push: true
-          platforms: linux/amd64 #, linux/arm64
-          tags: ${{ env.HOST }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
 
-      - name: docker scan
+      - name: docker build and scan
         run: |  
+          jf docker build . -t soleng.jfrog.io/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{github.run_number}}
           jf docker pull ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}
           jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}                               
 
