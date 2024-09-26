@@ -39,7 +39,7 @@ with open('README.rst') as f:
     readme = f.read()
 
 setup(name='python-ipmi',
-      version='1.0.4',
+      version='1.0.5',
       description='Pure python IPMI library',
       long_description=readme,
       url='https://github.com/kontron/python-ipmi',
